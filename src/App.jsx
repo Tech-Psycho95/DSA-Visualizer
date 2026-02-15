@@ -6,6 +6,7 @@ import Algorithms from './pages/Algorithms';
 import Contact from './pages/Contact';
 import VisualizerPage from './pages/VisualizerPage';
 import { bubbleSort, bubbleSortCPP } from './algorithms/bubbleSort';
+import { selectionSort , selectionSortCPP} from './algorithms/selectionSort';
 
 export default function App() {
   return (
@@ -24,6 +25,10 @@ export default function App() {
             <Route 
               path="/visualizer/bubble-sort" 
               element={<VisualizerPage name="Bubble Sort" codeSnippet={bubbleSortCPP} />} 
+            />
+            <Route 
+              path="/visualizer/selection-sort"
+              element={<VisualizerPage name="Selection Sort" codeSnippet={selectionSortCPP} />}
             />
           </Routes>
         </main>

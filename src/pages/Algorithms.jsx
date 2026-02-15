@@ -9,6 +9,12 @@ export default function Algorithms() {
       description: 'A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.',
       path: '/visualizer/bubble-sort'
     },
+    {
+      id: "selection-sort",
+      title:"Selection Sort",
+      description:"Selection sort repeatedly finds the smallest element in the unsorted part of the array and places it in its correct position. ",
+      path: '/visualizer/selection-sort'
+    }
     // Future algorithms can be added here easily!
   ];
 
