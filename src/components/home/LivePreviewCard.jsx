@@ -92,10 +92,10 @@ export default function LivePreviewCard() {
   }, [isPreviewRunning]);
 
   return (
-    <div className="rounded-3xl border border-slate-700/70 bg-slate-900/80 p-5 shadow-2xl shadow-blue-950/30 backdrop-blur-sm">
-      <div className="mb-5 flex items-center justify-between border-b border-slate-700/60 pb-3">
+    <div className="rounded-3xl border border-white/10 bg-slate-800/40 p-5 shadow-2xl shadow-blue-950/30 backdrop-blur-sm">
+      <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-3">
         <div>
-          <p className="text-xs font-bold tracking-[0.2em] text-slate-300 uppercase">
+          <p className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase">
             Live Preview
           </p>
           <p className="mt-1 text-xs text-slate-400">
@@ -106,7 +106,7 @@ export default function LivePreviewCard() {
           <button
             type="button"
             onClick={() => setIsPreviewRunning((prev) => !prev)}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-600 bg-slate-800/90 text-slate-100 transition hover:border-blue-400 hover:text-white"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-100 transition hover:bg-white/10 hover:text-white"
             aria-label={isPreviewRunning ? 'Pause preview' : 'Play preview'}
           >
             {isPreviewRunning ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
@@ -114,7 +114,7 @@ export default function LivePreviewCard() {
           <button
             type="button"
             onClick={handleShufflePreview}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-600 bg-slate-800/90 text-slate-100 transition hover:border-blue-400 hover:text-white"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-100 transition hover:bg-white/10 hover:text-white"
             aria-label="Shuffle preview bars"
           >
             <RotateCcw size={15} />
@@ -126,7 +126,7 @@ export default function LivePreviewCard() {
         ref={previewFrameRef}
         onPointerMove={handlePreviewPointerMove}
         onPointerLeave={() => setHoveredPreviewBar(null)}
-        className="flex h-64 items-end justify-between gap-2 rounded-2xl border border-slate-700/60 bg-slate-800/50 p-4"
+        className="flex h-64 items-end justify-between gap-2 rounded-2xl border border-white/10 bg-slate-900/50 p-4"
       >
         {previewBars.map((height, idx) => {
           const isComparing = idx === previewPair[0] || idx === previewPair[1];
@@ -141,13 +141,12 @@ export default function LivePreviewCard() {
                 filter: isHovered ? 'brightness(1.18)' : 'brightness(1)',
               }}
               transition={{ duration: 0.32, ease: 'easeOut' }}
-              className={`w-full rounded-t-md ${
-                isHovered
-                  ? 'bg-gradient-to-t from-cyan-500 to-blue-300'
+              className={`w-full rounded-t-md ${isHovered
+                  ? 'bg-gradient-to-t from-cyan-400 to-blue-300'
                   : isComparing
-                    ? 'bg-gradient-to-t from-amber-500 to-yellow-300'
-                    : 'bg-gradient-to-t from-blue-700 to-blue-400'
-              }`}
+                    ? 'bg-gradient-to-t from-amber-400 to-orange-300'
+                    : 'bg-gradient-to-t from-blue-600 to-indigo-400'
+                }`}
             />
           );
         })}

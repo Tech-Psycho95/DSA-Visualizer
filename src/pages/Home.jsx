@@ -20,9 +20,9 @@ export default function Home() {
   useDocumentTitle('Home');
   return (
     <div className="relative overflow-hidden">
-      <MotionDiv className="pointer-events-none absolute -top-28 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-600/25 blur-3xl" />
-      <MotionDiv className="pointer-events-none absolute right-0 top-40 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -left-16 bottom-16 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl" />
+      <MotionDiv className="pointer-events-none absolute -top-28 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-600/20 blur-3xl opacity-50 mix-blend-screen" />
+      <MotionDiv className="pointer-events-none absolute right-0 top-40 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl opacity-40" />
+      <div className="pointer-events-none absolute -left-16 bottom-16 h-64 w-64 rounded-full bg-violet-500/10 blur-3xl opacity-40" />
 
       <MotionSection
         variants={containerVariants}

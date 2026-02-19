@@ -37,8 +37,8 @@ export default function TiltCard({ children, className = '' }) {
   const shadowBlurFar = useTransform(smoothHoverStrength, [0, 1], [0, 72]);
   const shadowBlueAlpha = useTransform(smoothHoverStrength, [0, 1], [0, 0.4]);
   const shadowCyanAlpha = useTransform(smoothHoverStrength, [0, 1], [0, 0.2]);
-  const dynamicShadow = useMotionTemplate`${shadowX}px ${shadowY}px ${shadowBlurNear}px rgba(37, 99, 235, ${shadowBlueAlpha}), ${shadowX}px ${shadowY}px ${shadowBlurFar}px rgba(34, 211, 238, ${shadowCyanAlpha})`;
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(59, 130, 246, 0.42), rgba(34, 211, 238, 0.22) 28%, rgba(15, 23, 42, 0) 60%)`;
+  const dynamicShadow = useMotionTemplate`${shadowX}px ${shadowY}px ${shadowBlurNear}px rgba(56, 189, 248, ${shadowBlueAlpha}), ${shadowX}px ${shadowY}px ${shadowBlurFar}px rgba(139, 92, 246, ${shadowCyanAlpha})`;
+  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.15) 30%, rgba(15, 23, 42, 0) 60%)`;
 
   const resetTilt = () => {
     rotateX.set(0);
