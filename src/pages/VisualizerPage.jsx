@@ -28,7 +28,7 @@ import { radixSort } from "../algorithms/radixSort";
 import { heapSort } from "../algorithms/heapSort";
 import { insertionSort } from "../algorithms/insertionSort";
 import { dfs } from "../algorithms/dfs";
-
+import { interpolationSearch } from "../algorithms/interpolationSearch";
 // SYNTAX HIGHLIGHTING CONFIG
 const CODE_KEYWORDS = new Set([
   "break",
@@ -175,6 +175,16 @@ const algorithmMap = {
     space: "O(1)",
     description:
       "Linear Search scans each value from left to right until the target value is discovered.",
+  },
+  "Interpolation Search": {
+    run: interpolationSearch,
+    category: "Searching",
+    best: "O(1)",
+    average: "O(log log n)",
+    worst: "O(n)",
+    space: "O(1)",
+    description:
+      "Interpolation Search estimates the position of the target value in a sorted array based on the values at the range edges.",
   },
   "Radix Sort": {
     run: radixSort,

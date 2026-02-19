@@ -74,6 +74,20 @@ const algorithmsCatalog = [
     accent: 'text-cyan-100',
   },
   {
+    id: 'interpolation-search',
+    title: 'Interpolation Search',
+    description:
+      'Probes the array based on the target value distribution in a sorted list for faster retrieval.',
+    path: '/visualizer/interpolation-search',
+    category: 'searching',
+    type: 'Probing',
+    complexity: 'O(log log n)',
+    level: 'Intermediate',
+    icon: Search,
+    gradient: 'from-emerald-400/25 via-teal-500/15 to-transparent',
+    accent: 'text-emerald-100',
+},
+  {
     id: 'radix-sort',
     title: 'Radix Sort',
     description:

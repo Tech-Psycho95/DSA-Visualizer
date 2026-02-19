@@ -33,6 +33,11 @@ import {
   linearSearchPython,
 } from "./algorithms/linearSearch";
 import {
+  interpolationSearchCPP,
+  interpolationSearchJava,
+  interpolationSearchPython,
+} from "./algorithms/interpolationSearch";
+import {
   radixSortCPP,
   radixSortJava,
   radixSortPython,
@@ -106,6 +111,17 @@ export default function App() {
                   cppSnippet={linearSearchCPP}
                   javaSnippet={linearSearchJava}
                   pythonSnippet={linearSearchPython}
+                />
+              }
+            />
+            <Route
+              path="/visualizer/interpolation-search"
+              element={
+                <VisualizerPage
+                  name="Interpolation Search"
+                  cppSnippet={interpolationSearchCPP}
+                  javaSnippet={interpolationSearchJava}
+                  pythonSnippet={interpolationSearchPython}
                 />
               }
             />
