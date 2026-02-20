@@ -76,12 +76,6 @@ function sleep(ms) {
 }
 
 
-function formatElapsed(seconds) {
-    const mins = Math.floor(seconds / 60).toString().padStart(2, "0");
-    const secs = (seconds % 60).toString().padStart(2, "0");
-    return `${mins}:${secs}`;
-}
-
 export default function GraphVisualizerPage() {
     useDocumentTitle('Depth First Search');
     const [graph, setGraph] = useState({ nodes: [], edges: [] });
@@ -92,15 +86,6 @@ export default function GraphVisualizerPage() {
     const [isPaused, setIsPaused] = useState(false);
     const [statusMessage, setStatusMessage] = useState("Generate a graph to start.");
     const [selectedLanguage, setSelectedLanguage] = useState("C++");
-    const [elapsedSeconds, setElapsedSeconds] = useState(0);
-
-    // Timer Effect
-    useEffect(() => {
-        if (!isRunning || isPaused) return undefined;
-        const timer = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
-        return () => clearInterval(timer);
-    }, [isRunning, isPaused]);
-
     const [copyState, setCopyState] = useState("idle");
 
     const activeCode = selectedLanguage === "C++" ? dfsCPP : (selectedLanguage === "Java" ? dfsJava : dfsPython);
@@ -121,7 +106,6 @@ export default function GraphVisualizerPage() {
         setIsRunning(false);
         setIsPaused(false);
         setRunStatus("Idle");
-        setElapsedSeconds(0);
         setStatusMessage("New graph generated.");
 
         if (containerRef.current) {
@@ -140,8 +124,6 @@ export default function GraphVisualizerPage() {
         pauseSignal.current = false;
         setIsRunning(false);
         setIsPaused(false);
-        setRunStatus("Idle");
-        setElapsedSeconds(0);
         setRunStatus("Idle");
         setGraph(prev => ({
             nodes: prev.nodes.map(n => ({ ...n, status: 'default' })),
@@ -171,7 +153,6 @@ export default function GraphVisualizerPage() {
         setRunStatus("Running");
         stopSignal.current = false;
         pauseSignal.current = false;
-        setElapsedSeconds(0);
 
         // Build Adj List
         const adj = Array.from({ length: graph.nodes.length }, () => []);
@@ -270,9 +251,6 @@ export default function GraphVisualizerPage() {
                     <div>
                         <div className="mb-4 flex flex-wrap items-center gap-2">
                             <span className="rounded-full border border-purple-400/25 bg-purple-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-purple-200">Graph</span>
-                            <span className="flex items-center gap-1 rounded-full border border-slate-700 bg-slate-800/50 px-3 py-1 text-xs font-semibold text-slate-300">
-                                <Clock3 size={12} className="text-slate-400" /> {formatElapsed(elapsedSeconds)}
-                            </span>
                             <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${runStatusStyleMap[runStatus]}`}>{runStatus}</span>
                         </div>
                         <h1 className="font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">Depth First Search</h1>

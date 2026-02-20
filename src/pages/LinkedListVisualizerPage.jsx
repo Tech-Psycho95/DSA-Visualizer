@@ -83,12 +83,6 @@ const nodeStatusClassMap = {
   middle: "border-violet-400/45 bg-violet-500/20 text-violet-100",
 };
 
-function formatElapsed(seconds) {
-  const mins = Math.floor(seconds / 60).toString().padStart(2, "0");
-  const secs = (seconds % 60).toString().padStart(2, "0");
-  return `${mins}:${secs}`;
-}
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -160,14 +154,6 @@ export default function LinkedListVisualizerPage() {
   );
   const [copyState, setCopyState] = useState("idle");
   const [selectedLanguage, setSelectedLanguage] = useState("C++");
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
-
-  // Timer Effect
-  useEffect(() => {
-    if (!isRunning || isPaused) return undefined;
-    const timer = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
-    return () => clearInterval(timer);
-  }, [isRunning, isPaused]);
 
   const stopSignal = useRef(false);
   const pauseSignal = useRef(false);
@@ -236,7 +222,6 @@ export default function LinkedListVisualizerPage() {
       setMarkers({ ...EMPTY_MARKERS, head: nextGraph.headIndex });
       setRunStatus("Idle");
       setStepCount(0);
-      setElapsedSeconds(0);
       setStatusMessage("New linked list generated.");
     },
     [hardStopRun],
@@ -248,7 +233,6 @@ export default function LinkedListVisualizerPage() {
     setMarkers({ ...EMPTY_MARKERS, head: headIndex });
     setRunStatus("Idle");
     setStepCount(0);
-    setElapsedSeconds(0);
     setStatusMessage("Pointers and highlights reset.");
   }, [hardStopRun, headIndex, resetNodeHighlights]);
 
@@ -367,7 +351,6 @@ export default function LinkedListVisualizerPage() {
     setIsPaused(false);
     setRunStatus("Running");
     setStepCount(0);
-    setElapsedSeconds(0);
 
     const completed =
       selectedAlgorithm === "reverse"
@@ -482,9 +465,6 @@ export default function LinkedListVisualizerPage() {
               <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${runStatusStyleMap[runStatus]}`}>
                 {runStatus}
               </span>
-              <span className="flex items-center gap-1 rounded-full border border-slate-700 bg-slate-800/50 px-3 py-1 text-xs font-semibold text-slate-300">
-                <Clock3 size={12} className="text-slate-400" /> {formatElapsed(elapsedSeconds)}
-              </span>
             </div>
             <h1 className="font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
               {activeAlgorithm.title}
@@ -500,7 +480,7 @@ export default function LinkedListVisualizerPage() {
               </div>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 text-center">
-              {[{ label: "Nodes", val: nodes.length, color: "text-white" }, { label: "Time", val: activeAlgorithm.complexity, color: "text-cyan-200" }, { label: "Space", val: activeAlgorithm.space, color: "text-blue-100" }, { label: "Steps", val: stepCount, color: "text-emerald-200" }].map((stat) => (
+              {[ { label: "Nodes", val: nodes.length, color: "text-white" }, { label: "Time", val: activeAlgorithm.complexity, color: "text-cyan-200" }, { label: "Space", val: activeAlgorithm.space, color: "text-blue-100" }, { label: "Steps", val: stepCount, color: "text-emerald-200" } ].map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-3">
                   <p className="text-[11px] uppercase tracking-wider text-slate-400">{stat.label}</p>
                   <p className={`mt-1 text-sm font-semibold ${stat.color}`}>{stat.val}</p>
@@ -614,9 +594,9 @@ export default function LinkedListVisualizerPage() {
             <span className="text-sm font-bold uppercase tracking-widest text-slate-200">{selectedLanguage} Source</span>
             <div className="ml-4 flex rounded-lg bg-white/5 p-1 border border-white/10">
               {["C++", "Python", "Java"].map((lang) => ( // Added Java to mapping
-                <button
-                  key={lang}
-                  onClick={() => setSelectedLanguage(lang)}
+                <button 
+                  key={lang} 
+                  onClick={() => setSelectedLanguage(lang)} 
                   className={`px-3 py-1 text-[10px] font-bold rounded-md transition-all ${selectedLanguage === lang ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white"}`}
                 >
                   {lang}
