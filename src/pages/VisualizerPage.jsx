@@ -37,8 +37,8 @@ const algorithmMap = {
     run: bubbleSort,
     category: "Sorting",
     best: "O(n)",
-    average: "O(n^2)",
-    worst: "O(n^2)",
+    average: "O(n²)",
+    worst: "O(n²)",
     space: "O(1)",
     description:
       "Bubble Sort compares adjacent bars and swaps them until larger values settle at the end.",
@@ -46,9 +46,9 @@ const algorithmMap = {
   "Selection Sort": {
     run: selectionSort,
     category: "Sorting",
-    best: "O(n^2)",
-    average: "O(n^2)",
-    worst: "O(n^2)",
+    best: "O(n²)",
+    average: "O(n²)",
+    worst: "O(n²)",
     space: "O(1)",
     description:
       "Selection Sort repeatedly chooses the smallest unsorted value and places it into position.",
@@ -58,7 +58,7 @@ const algorithmMap = {
     category: "Sorting",
     best: "O(n log n)",
     average: "O(n log n)",
-    worst: "O(n^2)",
+    worst: "O(n²)",
     space: "O(log n)",
     description:
       "Quick Sort partitions around a pivot and recursively solves left and right subarrays.",
@@ -97,8 +97,8 @@ const algorithmMap = {
     run: insertionSort,
     category: "Sorting",
     best: "O(n)",
-    average: "O(n^2)",
-    worst: "O(n^2)",
+    average: "O(n²)",
+    worst: "O(n²)",
     space: "O(1)",
     description:
       "Insertion Sort builds the final sorted array one item at a time by shifting larger elements to the right.",
