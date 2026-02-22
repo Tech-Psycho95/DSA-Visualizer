@@ -257,6 +257,20 @@ const algorithmsCatalog = [
     gradient: "from-emerald-500/25 via-teal-500/15 to-transparent",
     accent: "text-emerald-200",
   },
+  {
+    id: "huffman-coding",
+    title: "Huffman Coding",
+    description:
+      "An optimal prefix code algorithm used for lossless data compression.",
+    path: "/visualizer/huffman-coding",
+    category: "greedy",
+    type: "Greedy",
+    complexity: "O(n log n)",
+    level: "Intermediate",
+    icon: Network,
+    gradient: "from-amber-500/25 via-orange-500/15 to-transparent",
+    accent: "text-amber-200",
+  },
 ];
 
 const filterTabs = [
@@ -267,6 +281,7 @@ const filterTabs = [
   { id: "linked-list", label: "Linked List" },
   { id: "pathfinding", label: "Pathfinding" },
   { id: "mst", label: "Minimum Spanning Tree" },
+  { id: "greedy", label: "Greedy Algorithms" },
 ];
 
 const levelTabs = ["All", "Beginner", "Intermediate", "Advanced"];
@@ -550,7 +565,7 @@ export default function Algorithms() {
         transition={{ duration: 0.4, delay: 0.08 }}
         className="mt-6 rounded-3xl border border-white/10 bg-slate-800/35 p-4 backdrop-blur sm:p-5"
       >
-        <div className="grid gap-4 xl:grid-cols-[1fr_auto_auto] xl:items-center">
+        <div className="grid gap-4 xl:grid-cols-[1fr_auto] xl:items-center">
           <label className="relative block">
             <Search
               size={17}
@@ -565,23 +580,6 @@ export default function Algorithms() {
               className="h-11 w-full rounded-xl border border-white/10 bg-slate-900/70 pl-10 pr-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-500 focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/15"
             />
           </label>
-
-          <div className="flex flex-wrap gap-2">
-            {filterTabs.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveFilter(tab.id)}
-                aria-pressed={activeFilter === tab.id}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${activeFilter === tab.id
-                    ? "border-blue-400/60 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-900/30"
-                    : "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white"
-                  }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
 
           <div className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">
             <Filter size={16} className="text-cyan-300" />
@@ -610,6 +608,24 @@ export default function Algorithms() {
           </div>
         </div>
 
+        <div className="flex flex-wrap gap-2 mt-4">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveFilter(tab.id)}
+              aria-pressed={activeFilter === tab.id}
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                activeFilter === tab.id
+                  ? "border-blue-400/60 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-900/30"
+                  : "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {levelTabs.map((level) => (
             <button
@@ -617,10 +633,11 @@ export default function Algorithms() {
               type="button"
               onClick={() => setActiveLevel(level)}
               aria-pressed={activeLevel === level}
-              className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all ${activeLevel === level
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all ${
+                activeLevel === level
                   ? "border-emerald-400/55 bg-emerald-500/15 text-emerald-100"
                   : "border-white/10 bg-white/5 text-slate-300 hover:border-emerald-400/40 hover:text-white"
-                }`}
+              }`}
             >
               {level}
             </button>
