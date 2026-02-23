@@ -171,12 +171,12 @@ export default function SignIn() {
                             </div>
 
                             <div className="text-sm">
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/forgot-password"
                                     className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
                                 >
                                     Forgot password?
-                                </a>
+                                </Link>
                             </div>
                         </div>
 

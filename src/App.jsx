@@ -18,6 +18,8 @@ import SignIn from "./pages/SignIn";
 import TopologicalSortPage from "./pages/TopologicalSortPage";
 import SignUp from "./pages/SignUp";
 import HuffmanCodingPage from "./pages/HuffmanCodingPage";
+import ForgotPasswordEmail from "./pages/ForgotPasswordEmail";
+import ForgotPasswordOTP from "./pages/ForgotPasswordOTP";
 
 // UPDATED IMPORTS: Including both CPP and Java versions
 import {
@@ -102,6 +104,8 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/forgot-password" element={<ForgotPasswordEmail />} />
+              <Route path="/forgot-password/otp" element={<ForgotPasswordOTP />} />
 
               {/* UPDATED ROUTES: Passing both cppSnippet, javaSnippet, and pythonSnippet */}
               <Route
