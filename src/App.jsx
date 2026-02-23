@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import VisualizerPage from "./pages/VisualizerPage";
 import LinkedListVisualizerPage from "./pages/LinkedListVisualizerPage";
 import GraphVisualizerPage from "./pages/GraphVisualizerPage";
+import BFSPage from "./pages/BFSPage";
 import PrimsVisualizerPage from "./pages/PrimsVisualizerPage";
 import DijkstraPage from "./pages/DijkstraPage";
 import KruskalPage from "./pages/KruskalPage";
@@ -231,6 +232,7 @@ export default function App() {
               <Route path="/visualizer/dijkstra" element={<DijkstraPage />} />
               <Route path="/visualizer/kruskal" element={<KruskalPage />} />
               <Route path="/visualizer/dfs" element={<GraphVisualizerPage />} />
+              <Route path="/visualizer/bfs" element={<BFSPage />} />
               <Route path="/visualizer/topological-sort" element={<TopologicalSortPage />} />
               <Route path="/visualizer/huffman-coding" element={<HuffmanCodingPage />} />
               <Route path="/visualizer/floyd-warshall" element={<FloydWarshallPage />} />
