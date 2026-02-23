@@ -71,7 +71,7 @@ int main() {
         std::cin >> arr[i];
     }
 
-    bubbleSort(arr);
+    bubbleSort(arr);     
 
     std::cout << "Sorted array: " << std::endl;
     for (const auto& element : arr) {

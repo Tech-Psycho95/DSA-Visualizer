@@ -19,6 +19,7 @@ import TopologicalSortPage from "./pages/TopologicalSortPage";
 import SignUp from "./pages/SignUp";
 import HuffmanCodingPage from "./pages/HuffmanCodingPage";
 import FloydWarshallPage from "./pages/FloydWarshallPage";
+import BoyerMoorePage from "./pages/BoyerMoorePage";
 
 // UPDATED IMPORTS: Including both CPP and Java versions
 import {
@@ -116,6 +117,10 @@ export default function App() {
                     jsSnippet={bubbleSortJS}
                   />
                 }
+              />
+              <Route
+                path="/visualizer/boyer-moore"
+                element={<BoyerMoorePage />}
               />
               <Route path="/visualizer/prims" element={<PrimsVisualizerPage />} />
               <Route path="/visualizer/astar" element={<AStarPage />} />

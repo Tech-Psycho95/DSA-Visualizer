@@ -13,6 +13,7 @@ import {
   Search,
   Sparkles,
   Network,
+  Vote,
   TimerReset,
   X,
   Zap,
@@ -61,6 +62,19 @@ const algorithmsCatalog = [
     icon: Zap,
     gradient: "from-cyan-400/25 via-sky-500/15 to-transparent",
     accent: "text-sky-200",
+  },
+  {
+    id: 'boyer-moore',
+    title: 'Boyer-Moore Voting',
+    description: 'Find the majority element in an array (appears more than n/2 times) using a single pass.',
+    path: '/visualizer/boyer-moore',
+    category: '1d-array-searching', 
+    type: 'Array Search',
+    complexity: 'O(n)',
+    level: 'Beginner',
+    icon: Vote, 
+    gradient: 'from-orange-500/25 via-amber-500/15 to-transparent',
+    accent: 'text-amber-200',
   },
   {
     id: "linear-search",
@@ -629,8 +643,8 @@ export default function Algorithms() {
               onClick={() => setActiveFilter(tab.id)}
               aria-pressed={activeFilter === tab.id}
               className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${activeFilter === tab.id
-                  ? "border-blue-400/60 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-900/30"
-                  : "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white"
+                ? "border-blue-400/60 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-900/30"
+                : "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white"
                 }`}
             >
               {tab.label}
@@ -646,8 +660,8 @@ export default function Algorithms() {
               onClick={() => setActiveLevel(level)}
               aria-pressed={activeLevel === level}
               className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all ${activeLevel === level
-                  ? "border-emerald-400/55 bg-emerald-500/15 text-emerald-100"
-                  : "border-white/10 bg-white/5 text-slate-300 hover:border-emerald-400/40 hover:text-white"
+                ? "border-emerald-400/55 bg-emerald-500/15 text-emerald-100"
+                : "border-white/10 bg-white/5 text-slate-300 hover:border-emerald-400/40 hover:text-white"
                 }`}
             >
               {level}
