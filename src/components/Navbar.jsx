@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Braces } from 'lucide-react';
+import { Menu, X, Braces, User, LogOut, ChevronDown } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -42,7 +43,20 @@ function NavLink({ to, label, isActive, onClick }) {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   const MotionDiv = motion.div;
   const MotionSpan = motion.span;
   const MotionButton = motion.button;
@@ -96,13 +110,63 @@ export default function Navbar() {
             Star
           </a>
 
-          {/* Sign In Button */}
-          <Link
-            to="/signin"
-            className="ml-4 rounded-full bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-500"
-          >
-            Sign In
-          </Link>
+          {user ? (
+            <div className="relative ml-4" ref={profileRef}>
+              <button
+                onClick={() => setProfileOpen(!profileOpen)}
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 pl-2 pr-3 py-1 text-sm font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white focus:outline-none"
+              >
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 text-white font-bold text-xs shadow-lg shadow-blue-500/25 uppercase">
+                  {user?.name ? user.name.charAt(0) : user?.email ? user.email.charAt(0) : 'U'}
+                </div>
+                <ChevronDown size={14} className={`transition-transform duration-200 ${profileOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {profileOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-xl backdrop-blur-xl"
+                  >
+                    <div className="px-4 py-3 border-b border-white/10 bg-white/5">
+                      <p className="text-sm font-medium text-white truncate">{user?.name || 'User'}</p>
+                      <p className="text-xs text-slate-400 truncate">{user?.email}</p>
+                    </div>
+                    <div className="p-1.5">
+                      <Link
+                        to="/profile"
+                        onClick={() => setProfileOpen(false)}
+                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        <User size={16} />
+                        My Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setProfileOpen(false);
+                        }}
+                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-red-400 transition-colors hover:bg-white/10 hover:text-red-300"
+                      >
+                        <LogOut size={16} />
+                        Logout
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <Link
+              to="/signin"
+              className="ml-4 rounded-full bg-blue-600 px-5 py-2 text-sm font-bold text-white transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -172,20 +236,54 @@ export default function Navbar() {
                 </MotionDiv>
               ))}
 
-              {/* Mobile Sign In Link */}
-              <MotionDiv
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: navLinks.length * 0.07, duration: 0.25 }}
-              >
-                <Link
-                  to="/signin"
-                  onClick={closeMobile}
-                  className="flex items-center rounded-lg px-4 py-3 text-sm font-medium text-slate-400 transition-all hover:bg-white/5 hover:text-white"
+              {user ? (
+                <>
+                  <MotionDiv
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: navLinks.length * 0.07, duration: 0.25 }}
+                  >
+                    <Link
+                      to="/profile"
+                      onClick={closeMobile}
+                      className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-slate-400 transition-all hover:bg-white/5 hover:text-white"
+                    >
+                      <User size={16} />
+                      My Profile
+                    </Link>
+                  </MotionDiv>
+                  <MotionDiv
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: (navLinks.length + 0.5) * 0.07, duration: 0.25 }}
+                  >
+                    <button
+                      onClick={() => {
+                        logout();
+                        closeMobile();
+                      }}
+                      className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-red-400 transition-all hover:bg-white/5 hover:text-red-300"
+                    >
+                      <LogOut size={16} />
+                      Logout
+                    </button>
+                  </MotionDiv>
+                </>
+              ) : (
+                <MotionDiv
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: navLinks.length * 0.07, duration: 0.25 }}
                 >
-                  Sign In
-                </Link>
-              </MotionDiv>
+                  <Link
+                    to="/signin"
+                    onClick={closeMobile}
+                    className="flex items-center rounded-lg px-4 py-3 text-sm font-medium text-slate-400 transition-all hover:bg-white/5 hover:text-white"
+                  >
+                    Sign In
+                  </Link>
+                </MotionDiv>
+              )}
 
               {/* Mobile GitHub Link */}
               <MotionDiv

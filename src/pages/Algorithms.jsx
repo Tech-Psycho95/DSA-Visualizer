@@ -203,18 +203,18 @@ const algorithmsCatalog = [
     accent: "text-violet-200",
   },
   {
-  id: 'astar-search',
-  title: 'A* Pathfinding',
-  description: 'An intelligent pathfinding algorithm that uses heuristics to find the shortest path more efficiently than Dijkstra.',
-  path: '/visualizer/astar',
-  category: 'pathfinding', 
-  type: 'Informed Search',
-  complexity: 'O(E log V)',
-  level: 'Intermediate',
-  icon: Zap, // Uses the Zap icon to represent speed/efficiency
-  gradient: 'from-blue-500/25 via-cyan-500/15 to-transparent',
-  accent: 'text-cyan-200',
-},
+    id: 'astar-search',
+    title: 'A* Pathfinding',
+    description: 'An intelligent pathfinding algorithm that uses heuristics to find the shortest path more efficiently than Dijkstra.',
+    path: '/visualizer/astar',
+    category: 'pathfinding',
+    type: 'Informed Search',
+    complexity: 'O(E log V)',
+    level: 'Intermediate',
+    icon: Zap, // Uses the Zap icon to represent speed/efficiency
+    gradient: 'from-blue-500/25 via-cyan-500/15 to-transparent',
+    accent: 'text-cyan-200',
+  },
   {
     id: "dijkstra",
     title: "Dijkstra's Algorithm",
@@ -270,6 +270,19 @@ const algorithmsCatalog = [
     icon: Network,
     gradient: "from-amber-500/25 via-orange-500/15 to-transparent",
     accent: "text-amber-200",
+  },
+  {
+    id: "floyd-warshall",
+    title: "Floyd Warshall Algorithm",
+    description: "Computes the shortest paths between all pairs of nodes using Dynamic Programming.",
+    path: "/visualizer/floyd-warshall",
+    category: "pathfinding",
+    type: "Dynamic Programming",
+    complexity: "O(V^3)",
+    level: "Advanced",
+    icon: Waypoints,
+    gradient: "from-rose-500/25 via-red-500/15 to-transparent",
+    accent: "text-rose-200",
   },
 ];
 
@@ -615,11 +628,10 @@ export default function Algorithms() {
               type="button"
               onClick={() => setActiveFilter(tab.id)}
               aria-pressed={activeFilter === tab.id}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                activeFilter === tab.id
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${activeFilter === tab.id
                   ? "border-blue-400/60 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-900/30"
                   : "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white"
-              }`}
+                }`}
             >
               {tab.label}
             </button>
@@ -633,11 +645,10 @@ export default function Algorithms() {
               type="button"
               onClick={() => setActiveLevel(level)}
               aria-pressed={activeLevel === level}
-              className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all ${
-                activeLevel === level
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all ${activeLevel === level
                   ? "border-emerald-400/55 bg-emerald-500/15 text-emerald-100"
                   : "border-white/10 bg-white/5 text-slate-300 hover:border-emerald-400/40 hover:text-white"
-              }`}
+                }`}
             >
               {level}
             </button>
