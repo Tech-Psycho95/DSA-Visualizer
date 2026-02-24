@@ -27,7 +27,7 @@ const algorithmsCatalog = [
     description:
       "A simple sorting algorithm that repeatedly compares adjacent elements and swaps them when needed.",
     path: "/visualizer/bubble-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "Comparison",
     complexity: "O(n^2)",
     level: "Beginner",
@@ -41,7 +41,7 @@ const algorithmsCatalog = [
     description:
       "Selects the minimum value from the unsorted part and places it in its final position each pass.",
     path: "/visualizer/selection-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "In-place",
     complexity: "O(n^2)",
     level: "Beginner",
@@ -55,7 +55,7 @@ const algorithmsCatalog = [
     description:
       "A fast divide-and-conquer algorithm that partitions around a pivot and recursively sorts subarrays.",
     path: "/visualizer/quick-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "Divide & Conquer",
     complexity: "O(n log n)",
     level: "Intermediate",
@@ -124,7 +124,7 @@ const algorithmsCatalog = [
     description:
       "A non-comparative sorting algorithm that sorts integers by processing individual digits.",
     path: "/visualizer/radix-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "Distribution",
     complexity: "O(nk)",
     level: "Advanced",
@@ -138,7 +138,7 @@ const algorithmsCatalog = [
     description:
       "A divide and conquer algorithm that splits the array into halves, recursively sorts them, and merges them.",
     path: "/visualizer/merge-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "Divide & Conquer",
     complexity: "O(n log n)",
     level: "Intermediate",
@@ -152,7 +152,7 @@ const algorithmsCatalog = [
     description:
       "A comparison-based sorting algorithm that uses a binary heap data structure to sort elements efficiently.",
     path: "/visualizer/heap-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "Comparison",
     complexity: "O(n log n)",
     level: "Intermediate",
@@ -166,7 +166,7 @@ const algorithmsCatalog = [
     description:
       "Builds a sorted array one item at a time by shifting elements that are greater than the key to the right.",
     path: "/visualizer/insertion-sort",
-    category: "sorting",
+    category: "1d-array-sorting",
     type: "In-place",
     complexity: "O(n^2)",
     level: "Beginner",
@@ -263,7 +263,7 @@ const algorithmsCatalog = [
     description:
       "Linear ordering of vertices in a Directed Acyclic Graph (DAG) using Kahn's Algorithm.",
     path: "/visualizer/topological-sort",
-    category: "sorting",
+    category: "graph-sorting",
     type: "Sorting",
     complexity: "O(V+E)",
     level: "Intermediate",
@@ -302,7 +302,8 @@ const algorithmsCatalog = [
 
 const filterTabs = [
   { id: "all", label: "All" },
-  { id: "sorting", label: "Sorting" },
+  { id: "1d-array-sorting", label: "Sorting (1D Array)" },
+  { id: "graph-sorting", label: "Graph Sorting" },
   { id: "1d-array-searching", label: "1D Array Searching" },
   { id: "graph-searching", label: "Graph Searching" },
   { id: "linked-list", label: "Linked List" },
@@ -387,7 +388,7 @@ export default function Algorithms() {
   }, [filteredAlgorithms, spotlightId]);
 
   const sortingCount = algorithmsCatalog.filter(
-    (algorithm) => algorithm.category === "sorting",
+    (algorithm) => algorithm.category === "1d-array-sorting",
   ).length;
   const arraySearchingCount = algorithmsCatalog.filter(
     (algorithm) => algorithm.category === "1d-array-searching",
