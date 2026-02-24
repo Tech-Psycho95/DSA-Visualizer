@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useCallback } from 'react';
 
 const AuthContext = createContext();
 
@@ -59,8 +59,14 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
+    const oauthLogin = useCallback((userData) => {
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
+        return { success: true };
+    }, []);
+
     return (
-        <AuthContext.Provider value={{ user, isLoading, signup, signin, logout }}>
+        <AuthContext.Provider value={{ user, isLoading, signup, signin, logout, oauthLogin }}>
             {children}
         </AuthContext.Provider>
     );
