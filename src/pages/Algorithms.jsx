@@ -10,6 +10,7 @@ import {
   Dices,
   Filter,
   Layers,
+  Layers2,
   Search,
   Sparkles,
   TimerReset,
@@ -173,6 +174,20 @@ const algorithmsCatalog = [
     gradient: 'from-orange-500/25 via-amber-500/15 to-transparent',
     accent: 'text-orange-200',
   },
+  {
+    id: 'stack',
+    title: 'Stack Push-Pop',
+    description:
+      'Visualize LIFO (Last In, First Out) stack operations with animated push and pop demonstrations.',
+    path: '/visualizer/stack',
+    category: 'stack',
+    type: 'LIFO',
+    complexity: 'O(1)',
+    level: 'Beginner',
+    icon: Layers2,
+    gradient: 'from-violet-500/25 via-purple-500/15 to-transparent',
+    accent: 'text-violet-200',
+  },
 ];
 
 const filterTabs = [
@@ -180,6 +195,7 @@ const filterTabs = [
   { id: 'sorting', label: 'Sorting' },
   { id: 'searching', label: 'Searching' },
   { id: 'linked-list', label: 'Linked List' },
+  { id: 'stack', label: 'Stack Operations' },
   { id: 'pathfinding', label: 'Pathfinding' },
 ];
 
@@ -264,6 +280,9 @@ export default function Algorithms() {
   const linkedListCount = algorithmsCatalog.filter(
     (algorithm) => algorithm.category === 'linked-list',
   ).length;
+  const stackCount = algorithmsCatalog.filter(
+    (algorithm) => algorithm.category === 'stack',
+  ).length;
   const hasActiveFilters =
     activeFilter !== 'all' || activeLevel !== 'All' || searchText.trim().length > 0;
   const SpotlightIcon = spotlightAlgorithm.icon;
@@ -330,7 +349,7 @@ export default function Algorithms() {
               transitions designed for focused learning on desktop and mobile.
             </p>
 
-            <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-5">
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <p className="text-xs uppercase tracking-wider text-slate-400">Algorithms</p>
                 <p className="mt-1 text-2xl font-bold text-white">{algorithmsCatalog.length}</p>
@@ -346,6 +365,10 @@ export default function Algorithms() {
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <p className="text-xs uppercase tracking-wider text-slate-400">Linked List</p>
                 <p className="mt-1 text-2xl font-bold text-violet-200">{linkedListCount}</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-xs uppercase tracking-wider text-slate-400">Stack Ops</p>
+                <p className="mt-1 text-2xl font-bold text-purple-200">{stackCount}</p>
               </div>
             </div>
           </div>

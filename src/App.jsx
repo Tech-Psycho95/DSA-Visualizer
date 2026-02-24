@@ -9,6 +9,7 @@ import VisualizerPage from "./pages/VisualizerPage";
 import LinkedListVisualizerPage from "./pages/LinkedListVisualizerPage";
 import GraphVisualizerPage from "./pages/GraphVisualizerPage";
 import DijkstraPage from "./pages/DijkstraPage";
+import StackVisualizerPage from "./pages/StackVisualizerPage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
@@ -181,6 +182,7 @@ export default function App() {
             />
             <Route path="/visualizer/dijkstra" element={<DijkstraPage />} />
             <Route path="/visualizer/dfs" element={<GraphVisualizerPage />} />
+            <Route path="/visualizer/stack" element={<StackVisualizerPage />} />
           </Routes>
         </main>
 
