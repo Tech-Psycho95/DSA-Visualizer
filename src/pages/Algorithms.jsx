@@ -10,6 +10,7 @@ import {
   Dices,
   Filter,
   Layers,
+  Layers2,
   Search,
   Sparkles,
   Network,
@@ -298,6 +299,20 @@ const algorithmsCatalog = [
     gradient: "from-rose-500/25 via-red-500/15 to-transparent",
     accent: "text-rose-200",
   },
+  {
+    id: 'stack',
+    title: 'Stack Push-Pop',
+    description:
+      'Visualize LIFO (Last In, First Out) stack operations with animated push and pop demonstrations.',
+    path: '/visualizer/stack',
+    category: 'stack',
+    type: 'LIFO',
+    complexity: 'O(1)',
+    level: 'Beginner',
+    icon: Layers2,
+    gradient: 'from-violet-500/25 via-purple-500/15 to-transparent',
+    accent: 'text-violet-200',
+  },
 ];
 
 const filterTabs = [
@@ -307,6 +322,7 @@ const filterTabs = [
   { id: "1d-array-searching", label: "1D Array Searching" },
   { id: "graph-searching", label: "Graph Searching" },
   { id: "linked-list", label: "Linked List" },
+  { id: "stack", label: "Stack Operations" },
   { id: "pathfinding", label: "Pathfinding" },
   { id: "mst", label: "Minimum Spanning Tree" },
   { id: "greedy", label: "Greedy Algorithms" },
@@ -398,6 +414,9 @@ export default function Algorithms() {
   ).length;
   const linkedListCount = algorithmsCatalog.filter(
     (algorithm) => algorithm.category === "linked-list",
+  ).length;
+  const stackCount = algorithmsCatalog.filter(
+    (algorithm) => algorithm.category === 'stack',
   ).length;
   const hasActiveFilters =
     activeFilter !== "all" ||
@@ -523,6 +542,10 @@ export default function Algorithms() {
                 <p className="mt-1 text-2xl font-bold text-violet-200">
                   {linkedListCount}
                 </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-xs uppercase tracking-wider text-slate-400">Stack Ops</p>
+                <p className="mt-1 text-2xl font-bold text-purple-200">{stackCount}</p>
               </div>
             </div>
           </div>

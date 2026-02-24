@@ -14,6 +14,7 @@ import PrimsVisualizerPage from "./pages/PrimsVisualizerPage";
 import DijkstraPage from "./pages/DijkstraPage";
 import KruskalPage from "./pages/KruskalPage";
 import AStarPage from "./pages/AStarPage";
+import StackVisualizerPage from "./pages/StackVisualizerPage";
 import SignIn from "./pages/SignIn";
 import TopologicalSortPage from "./pages/TopologicalSortPage";
 import SignUp from "./pages/SignUp";
@@ -246,6 +247,7 @@ export default function App() {
               <Route path="/visualizer/topological-sort" element={<TopologicalSortPage />} />
               <Route path="/visualizer/huffman-coding" element={<HuffmanCodingPage />} />
 <Route path="/visualizer/floyd-warshall" element={<FloydWarshallPage />} />
+              <Route path="/visualizer/stack" element={<StackVisualizerPage />} />
               <Route path="/compare" element={<ComparisonPage />} />
             </Routes>
           </main>
